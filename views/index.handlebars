@@ -1,20 +1,28 @@
 
-<div class="container">
+ <nav>
+    <div class="nav-wrapper amber lighten-1">
+      <a class="brand-logo center">🍔 EatDaBurger</a>
+    </div>
+  </nav>
+
+<div class="container section">
   <div class="row">
     <div class="col s12">
-      <div class="card">
+      <div class="card square">
         <div class="card-content">
-          <h1>Eat Da Burger- A Burger Planner!</h1>
-          <p>Welcome to Eat Da Burger- the only app that helps you keep track of burgers you want to eat and burgers you already ate!</p>
+          <h3>Eat Da Burger- The world's first burger planner!</h3>
+            <div class="divider"></div>
+          <h6 class="section">Welcome to Eat Da Burger- the only app that helps you keep track of burgers you want to eat and burgers you already ate!</h6>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col m6 s12">
-      <div class="card">
+    <div class="col l6 m12">
+      <div class="card square results">
         <div class="card-content">
           <span class="card-title">Burgers to Eat</span>
+          <div class="divider"></div>
           {{#each burgers}}
         <div class="card">
           <div class="card-image">
@@ -22,18 +30,19 @@
             <span class="card-title">{{this.burger_name}}</span>
           </div>
           <div class="card-action group">
-            <a class="waves-effect waves-light btn left" data-id={{this.id}} id="link" href={{this.burger_res}}>Recipe</a>
-            <button class="waves-effect waves-light btn right">Ate it!</button>
+            <a class="waves-effect waves-light btn left green" target="_blank" id="link" href={{this.burger_res}}>Recipe</a>
+            <button class="waves-effect waves-light btn right remove amber lighten-1" data-id={{this.id}}>Ate it!</button>
           </div>
         </div>
         {{/each}}
         </div>
       </div>
     </div>
-     <div class="col m6 s12">
-       <div class="card">
+     <div class="col l6 m12">
+       <div class="card square results">
          <div class="card-content">
-           <span class="card-title">Burgers you ate! </span>
+           <span class="card-title">Burgers you Ate </span>
+              <div class="divider"></div>
              {{#each eatenBurgers}}
         <div class="card">
           <div class="card-image">
@@ -41,7 +50,7 @@
             <span class="card-title">{{this.burger_name}}</span>
           </div>
           <div class="card-action group">
-            <a class="waves-effect waves-light btn left" id="link" href={{this.burger_res}}>Recipe</a>
+            <a class="waves-effect waves-light btn left green" target="_blank" id="link" href={{this.burger_res}}>Recipe</a>
           </div>
         </div>
         {{/each}}
@@ -51,74 +60,35 @@
   </div>
   <div class="row">
     <div class="col s12">
-      <div class="card">
+      <div class="card square">
         <div class="card-content group">
-          <h2>Search for a new burger!</h2>
-            <textarea type="text" id="burgerText" name="burger"></textarea>
-            <p>Warning! you can only add one burger at a time, so choose wisely</p>
-            <button id="search">search burgers!!</button>
-          <div class="card-action" id="area"></div>
+          <h4>Search for a new burger!</h4>
+          <div class="input-field col s12">
+            <textarea type="text" id="burgerText" name="burger" class="materialize-textarea"></textarea>
+            <label for="burgerText">Burger</label>
+          </div>
+            <h6>Warning! you can only add one burger at a time, so choose wisely</h6>
+            <button class="waves-effect waves-light btn right section amber lighten-1" target="_blank" id="search">search burgers!!</button>
+            </div>
+          <div class="card-action group" id="area"></div>
          
-        </div>
+        
       </div>
     </div>
   </div>
 </div>
 
+<footer class="page-footer amber lighten-1">
+    <div class="container">
+    © 2018 S.Goldfinger
+    </div>
+</footer>
 
 
 
 
-<script>
-$(document).ready(function() {
 
-  let search={};
-
-  $("#search").on("click",function(){
-    let query=$("#burgerText").val().trim()
-    $.ajax({
-        url: "https://api.edamam.com/search?q="+query+"&app_id=c359db3b&app_key=c01d784ec3d3816bd43efde5cf935ae4",
-        method: "GET",
-    }).then(function(response) {
-        console.log(response);
-        search=response;
-        for (let i = 0; i<search.hits.length; i++){
-          $("#area").append("<div class='col m6 s12'id='col"+i+"'>");
-          $("#col"+i).append("<div class='card'id='card"+i+"'>");
-          $("#card"+i).append("<div class='card-image'id='cardimg"+i+"'>");
-          $("#cardimg"+i).append("<img class='cardImage' src='"+search.hits[i].recipe.image+"' width='200'>");
-          $("#cardimg"+i).append("<span class='card-title'>"+search.hits[i].recipe.label+"</span>")
-          $("#card"+i).append("<div class='card-action group'id='cardAction"+i+"'>");
-          $("#cardAction"+i).append("<a class='waves-effect waves-light btn left' id='addCard' data-link='"+search.hits[i].recipe.url+"' data-image='"+search.hits[i].recipe.image+"' data-name='"+search.hits[i].recipe.label+"'>Add it!</a>");
-          $("#cardAction"+i).append("<a class='waves-effect waves-light btn right' href='"+search.hits[i].recipe.url+"'>Recipe</a>");
-      }
-  })
-  })
-
-$(document).on("click", "#addCard", function(){
-
-let burgerLink = $(this).data("link");
-let burgerImage= $(this).data("image");
-let burgerLabel= $(this).data("label");
-
-let newBurger={link:burgerLink, image: burgerImage, label: burgerLabel}
-
-$.ajax("/api/addBurger", {
-      type: "POST",
-      data:newBurger
-    }).then(
-      function(){
-        console.log("added burger");
-        location.reload();
-      })
-
-})
-
-
-})
-
-
-</script>
+<script src="../public/JS/index.js" ></script>
 
 
 

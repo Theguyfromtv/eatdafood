@@ -7,3 +7,30 @@ content: "";
 display: table;
 clear: both;
 }
+
+.square {
+    box-shadow: none;
+}
+
+.btn {
+    box-shadow: none;
+}
+
+body {
+    
+    background-image: url("../images/burger.png");
+    background-repeat: repeat;
+    background-size: 175px ;
+    background-position: center
+
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+flex: 1 0 auto;
+}
