@@ -1,0 +1,9 @@
+.cardImage {
+    filter: brightness(75%);
+  }
+
+.group:after {
+content: "";
+display: table;
+clear: both;
+}

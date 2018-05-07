@@ -1,9 +1,10 @@
 USE burger_db;
 
+
 CREATE TABLE burgers (
-    id INTEGER(10) AUTO_INCREMENT,
+    id INTEGER(10) AUTO_INCREMENT PRIMARY KEY,
     burger_name VARCHAR(255) NOT NULL,
     burger_img VARCHAR(255) NOT NULL,
-    devaured BOOLEAN NOT NULL,
-    PRIMARY KEY (id)
+    burger_res VARCHAR(255) NOT NULL,
+    eaten BOOLEAN
 );
