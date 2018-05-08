@@ -5,27 +5,28 @@ let burger = {
 
 
 
-    burgerObject: function(cb){
-        let showBurgers={uneatenBurgers: "placeholder", burgers:"placeholder"}
-        orm.loadPage1(function(data){
+    burgerObject: function(email, cb){
+        let showBurgers={eatenBurgers: "placeholder", burgers:"placeholder"}
+        orm.loadPage1(email,function(data){
             showBurgers.eatenBurgers=data;
 
             cb(showBurgers)
         })
     },
-    burgerObject2: function(cb){
-        orm.loadPage2(function(data){
-            burger.burgerObject(function(showBurgers){
+    burgerObject2: function(email, cb){
+        orm.loadPage2(email,function(data){
+            burger.burgerObject(email, function(showBurgers){
                 showBurgers.burgers=data;
                 cb(showBurgers)
-                console.log(showBurgers)
+                console.log(showBurgers.burgers)
+                //console.log(showBurgers)
         })
         
             
         })
     },
-    addBurger: function(name, img, link){
-        orm.addBurger(name, img, link)
+    addBurger: function(name, img, link, email){
+        orm.addBurger(name, img, link, email)
     }
 }
  

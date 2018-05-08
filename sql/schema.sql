@@ -6,5 +6,6 @@ CREATE TABLE burgers (
     burger_name VARCHAR(255) NOT NULL,
     burger_img VARCHAR(255) NOT NULL,
     burger_res VARCHAR(255) NOT NULL,
-    eaten BOOLEAN
+    eaten BOOLEAN,
+    email VARCHAR(255) NOT NULL
 );
