@@ -7,9 +7,10 @@ $(document).ready(function() {
   })
   $('#modal1').modal('open')
 
-  email = $("#email").val().trim();
+
 
     $("#emailSubmit").on("click", function(){
+      email = $("#email").val().trim();
       let url = window.location.href;
       window.location = url + "email="+email;
     })
