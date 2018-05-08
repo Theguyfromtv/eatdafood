@@ -68,7 +68,7 @@ $(document).ready(function() {
           data:object
         }).then(
           function(){
-            console.log("added burger");
+            console.log("moved burger");
             location.reload();
           })
   
