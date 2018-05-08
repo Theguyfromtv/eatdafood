@@ -27,6 +27,10 @@ let burger = {
     },
     addBurger: function(name, img, link, email){
         orm.addBurger(name, img, link, email)
+    },
+
+    moveBurger: function (id){
+        orm.moveBurger(id)
     }
 }
  
